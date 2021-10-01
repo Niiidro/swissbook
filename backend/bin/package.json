@@ -1,0 +1,17 @@
+{
+  "name": "swissbook",
+  "version": "1.0.0",
+  "description": "Backend system for swissbook platform",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "joi": "^17.4.2",
+    "mongoose": "^6.0.8"
+  }
+}

@@ -1,12 +1,18 @@
 version: "3.8"
 services:
+  swissbook:
+    build: .
+    ports:
+      - "7500:7500"
+    links:
+      - mongo
   mongodb:
     image: mongo
     container_name: mongodb
     ports:
       - 27017:27017
     volumes:
-      - data:/data
+      - data:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=rootuser
       - MONGO_INITDB_ROOT_PASSWORD=rootpass
