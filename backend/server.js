@@ -3,6 +3,7 @@ Joi.objectId = require('joi-objectid');
 
 const mongoose = require('mongoose');
 const register = require('./routes/register');
+const login = require('./routes/login');
 const express = require("express");
 const app = express();
 
@@ -14,6 +15,7 @@ mongoose.connect('mongodb://localhost:27017/swissbook', {useNewUrlParser: true, 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/register', register);
+app.use('/login', login);
 
 const port = 4000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
