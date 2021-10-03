@@ -2,6 +2,7 @@ const Joi = require('joi');
 const Mongoose = require('mongoose');
 
 const User = Mongoose.model('User', new Mongoose.Schema({
+
     name: {
         type: String,
         required: false,
