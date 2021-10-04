@@ -5,7 +5,7 @@ const router = express.Router();
 router.post('/', async function(req, res, next) {
 
     if(req.session) {
-        req.session.uuid = "";
+        req.session.destroy();
         return res.status(200).send({ "success":true });
     } else return res.status(400).send({ "success":false });
 });

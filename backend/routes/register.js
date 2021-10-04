@@ -1,17 +1,17 @@
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
-const { User, validate } = require('../models/user');
+const { User, validateUser, validatePassword } = require('../models/user');
 const express = require('express');
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/', validatePassword, async (req, res) => {
 
-    const { error } = validate(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    const { error } = validateUser(req.body);
+    if (error) return res.status(400).send({success: false , message: error.details[0].message});
 
     let user = await User.findOne({ email: req.body.email });
 
-    if (user) return res.status(400).send({'success':false, message:'That user already exists!'});
+    if (user) return res.status(400).send({success:false, message:'That user already exists!'});
     else 
     {
         user = new User(_.pick(req.body, ['name', 'email', 'password']));

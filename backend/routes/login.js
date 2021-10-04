@@ -8,14 +8,14 @@ const router = express.Router();
 router.post('/', async function(req, res, next) {
 
     let user = await User.findOne({ email: req.body.email }).exec();
-    if (!user) return res.status(400).send({'success':false, message:'User does not exist.'});
+    if (!user) return res.status(400).send({success:false, message:'User does not exist.'});
 
     const validPassword = await bcrypt.compare(req.body.password, user.password);
-    if (!validPassword) return res.status(400).send({'success':false, message:'Incorrect password.'});
+    if (!validPassword) return res.status(400).send({success:false, message:'Incorrect password.'});
 
     req.session.uuid = user._id;
 
-    res.send({ 'success':true });
+    res.send({ success:true });
 });
 
 function validate(req) {
