@@ -12,6 +12,7 @@ const logout = require('./routes/logout');
 const home = require('./routes/home');
 const express = require("express");
 const MongoStore = require('connect-mongo');
+const cors = require('cors');
 const app = express();
 
 mongoose.connect('mongodb://localhost:27017/swissbook', {useNewUrlParser: true, useUnifiedTopology: true})
@@ -30,6 +31,7 @@ app.use(sessions({
     store: new MongoStore({ mongoUrl:'mongodb://localhost:27017/swissbook', ttl: 14 * 24 * 60 * 60, autoRemove:'native' })
 }));
 
+app.use(cors);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/register', register);
@@ -37,7 +39,11 @@ app.use('/login', login);
 app.use('/logout', logout);
 app.use('/', home);
 
+const options = {
+    origin: ['http://localhost:80']
+};
 
+app.use(cors(options));
 
 if (!config.get('privatekey')) {
     console.error('FATAL ERROR: PrivateKey is not defined.');
