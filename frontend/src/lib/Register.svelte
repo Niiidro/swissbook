@@ -2,16 +2,16 @@
     import axios from '../configs/axios.js';
     console.log(axios);
 
-    let register = {
+    let user = {
         name: '',
         email: '',
         password: '',
     };
     let confirmPassword = '';
 
-    function login() {
+    function register() {
         console.log(register);
-        if (!register.name && !register.email && !register.password) {
+        if (!user.name && !user.email && user.password === confirmPassword) {
             axios
                 .post('/register', {
                     register,
@@ -31,19 +31,19 @@
                 type="text"
                 placeholder="Name"
                 class="input input-bordered"
-                bind:value={register.name}
+                bind:value={user.name}
             />
             <input
                 type="email"
                 placeholder="E-Mail"
                 class="input input-bordered"
-                bind:value={register.email}
+                bind:value={user.email}
             />
             <input
                 type="password"
                 placeholder="Passwort"
                 class="input input-bordered"
-                bind:value={register.password}
+                bind:value={user.password}
             />
             <input
                 type="password"
@@ -52,7 +52,7 @@
                 bind:value={confirmPassword}
             />
             <div class="card-actions">
-                <button class="btn btn-success" on:click|once={login}
+                <button class="btn btn-success" on:click|once={register}
                     >Registrieren</button
                 >
             </div>
