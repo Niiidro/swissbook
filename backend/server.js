@@ -40,7 +40,7 @@ app.use('/logout', logout);
 app.use('/', home);
 
 const options = {
-    origin: ['http://localhost:80']
+    origin: ['http://localhost:8081']
 };
 
 app.use(cors(options));
