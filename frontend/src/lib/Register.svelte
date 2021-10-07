@@ -1,6 +1,6 @@
 <script>
     import axios from '../configs/axios.js';
-    console.log(axios)
+    console.log(axios);
 
     let register = {
         name: '',
