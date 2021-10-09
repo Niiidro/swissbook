@@ -31,7 +31,6 @@ app.use(sessions({
     store: new MongoStore({ mongoUrl:'mongodb://localhost:27017/swissbook', ttl: 14 * 24 * 60 * 60, autoRemove:'native' })
 }));
 
-app.use(cors);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/register', register);
